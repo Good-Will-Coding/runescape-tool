@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import "./App.css";
 import Search from "./components/Search";
 import hiscores from "osrs-json-hiscores";
-// import Skills from "./components/Skills";
+import Skills from "./components/Skills";
 
 class App extends Component {
   state = {
     username: undefined,
-    skills: {
+    skills: [
+     {
       agility: {
         level: undefined,
         xp: undefined
@@ -105,6 +106,7 @@ class App extends Component {
         xp: undefined
       }
     }
+  ]
   };
   getUsers = async e => {
     e.preventDefault();
@@ -117,7 +119,7 @@ class App extends Component {
 
         this.setState({
           username: userName,
-          skills: {
+          skills: [ {
             agility: {
               level: data.agility.level,
               xp: data.agility.xp
@@ -215,12 +217,14 @@ class App extends Component {
               xp: data.woodcutting.xp
             }
           }
+        ]
         });
         console.log(this.state.username);
         console.log(this.state.skills);
       })
       .catch(err => console.error(err));
   };
+
   render() {
     return (
       <div className="App">
@@ -228,8 +232,8 @@ class App extends Component {
           <h2 className="App-title">Old School RuneScape</h2>
           <h3 className="Apple-subtitle">Stats & Rankings</h3>
         </header>
-
         <Search getUsers={this.getUsers} />
+        <Skills totalSkills={this.state.skills} />
       </div>
     );
   }

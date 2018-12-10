@@ -14,6 +14,11 @@ const Skills = props => {
               </tr>
             </thead>
             <tbody>
+            <tr>
+                <td>Overall</td>
+                <td>{skill.overall.level}</td>
+                <td>{skill.overall.xp}</td>
+              </tr>
               <tr>
                 <td> <img className="skill_img"src="https://vignette.wikia.nocookie.net/runescape2/images/5/51/Attack-icon.png/revision/latest?cb=20181022021633" alt=""/> Attack</td>
                 <td>{skill.attack.level}</td>
@@ -129,11 +134,7 @@ const Skills = props => {
                 <td>{skill.farming.level}</td>
                 <td>{skill.farming.xp}</td>
               </tr>
-              <tr>
-                <td>Overall</td>
-                <td>{skill.overall.level}</td>
-                <td>{skill.overall.xp}</td>
-              </tr>
+              
             </tbody>
           </table>
         );

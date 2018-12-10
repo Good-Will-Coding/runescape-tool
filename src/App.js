@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import "./App.css";
 import Search from "./components/Search";
 import hiscores from "osrs-json-hiscores";
+import Loader from "react-loader-spinner";
+import Username from "./components/Username";
 import Skills from "./components/Skills";
 
 class App extends Component {
@@ -230,9 +232,11 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <h2 className="App-title">Old School RuneScape</h2>
-          <h3 className="Apple-subtitle">Stats & Rankings</h3>
+          <h3 className="Apple-subtitle">Player Stats</h3>
         </header>
         <Search getUsers={this.getUsers} />
+        <Loader type="Triangle" color="white" height={80} width={80} />
+        <Username userName={this.state.username} />
         <Skills totalSkills={this.state.skills} />
       </div>
     );

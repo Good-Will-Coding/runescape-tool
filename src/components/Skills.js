@@ -134,7 +134,6 @@ const Skills = props => {
                 <td>{skill.farming.level}</td>
                 <td>{skill.farming.xp}</td>
               </tr>
-              
             </tbody>
           </table>
         );

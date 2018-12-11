@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
+import Error from "./components/Error";
 import Header from "./components/Header";
 import Search from "./components/Search";
 import hiscores from "osrs-json-hiscores";
@@ -9,6 +10,7 @@ import Skills from "./components/Skills";
 
 class App extends Component {
   state = {
+    error: false,
     loading: false,
     showResults: false,
     username: undefined,
@@ -117,6 +119,7 @@ class App extends Component {
   getUsers = async e => {
     e.preventDefault();
     this.setState({
+      error: false,
       loading: true,
       showResults: false,
       username: undefined
@@ -233,10 +236,9 @@ class App extends Component {
             }
           ]
         });
-        console.log(this.state.username);
-        console.log(this.state.skills);
       })
-      .catch(err => console.error(err));
+      .catch(err => (this.setState({error: true, loading: false})
+      ))
   };
 
   render() {
@@ -252,7 +254,9 @@ class App extends Component {
             width={50}
           />
           </span>
+          
         ) : null}
+        <Error error={this.state.error} />
         <div className="list-container">
           <Username userName={this.state.username} />
           {this.state.showResults ? (

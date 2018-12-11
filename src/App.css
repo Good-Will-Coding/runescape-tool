@@ -73,6 +73,11 @@ input:-webkit-autofill:active {
   color: #c3c8ce
 }
 
+#error {
+  margin-top: 3%;
+  color: #c3c8ce
+}
+
 .table {
   background-color: rgb(56, 46, 46);
   color: white;

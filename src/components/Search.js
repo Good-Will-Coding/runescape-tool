@@ -10,7 +10,7 @@ const Search = (props) => {
           name="userName"
           placeholder="Enter a username..."
         />
-        <button className="form__btn">Search</button>
+        <button className="form__btn"> <span id="form__btn-span">Search</span></button>
       </form>
     </div>
   );

@@ -117,7 +117,9 @@ class App extends Component {
   getUsers = async e => {
     e.preventDefault();
     this.setState({
-      loading: true
+      loading: true,
+      showResults: false,
+      username: undefined
     });
     const USER_NAME = e.target.elements.userName.value;
     const api_call = await hiscores
@@ -242,13 +244,21 @@ class App extends Component {
       <div className="App">
         <Header />
         <Search getUsers={this.getUsers} />
-        {this.state.loading ? (
-          <Loader type="Triangle" color="white" height={130} width={130} />
+        {this.state.loading ? ( <span className="loader">
+          <Loader
+            type="Triangle"
+            color="white"
+            height={50}
+            width={50}
+          />
+          </span>
         ) : null}
-        <Username userName={this.state.username} />
-        {this.state.showResults ? (
-          <Skills totalSkills={this.state.skills} />
-        ) : null}
+        <div className="list-container">
+          <Username userName={this.state.username} />
+          {this.state.showResults ? (
+            <Skills totalSkills={this.state.skills} />
+          ) : null}
+        </div>
       </div>
     );
   }

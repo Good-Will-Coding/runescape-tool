@@ -116,6 +116,9 @@ class App extends Component {
 
   getUsers = async e => {
     e.preventDefault();
+    this.setState({
+      loading: true
+    });
     const USER_NAME = e.target.elements.userName.value;
     const api_call = await hiscores
       .getStats(`${USER_NAME}`, "main")
@@ -238,8 +241,10 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <Loader type="Triangle" color="white" height={80} width={80} />
         <Search getUsers={this.getUsers} />
+        {this.state.loading ? (
+          <Loader type="Triangle" color="white" height={130} width={130} />
+        ) : null}
         <Username userName={this.state.username} />
         {this.state.showResults ? (
           <Skills totalSkills={this.state.skills} />

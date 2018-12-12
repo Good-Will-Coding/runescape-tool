@@ -1,13 +1,12 @@
-import React, { Component } from "react";
-import "./App.css";
-import Error from "./components/Error";
-import Header from "./components/Header";
-import Search from "./components/Search";
-import hiscores from "osrs-json-hiscores";
-import Loader from "react-loader-spinner";
-import Username from "./components/Username";
-import Skills from "./components/Skills";
-
+import React, { Component } from 'react'
+import './App.css'
+import Error from './components/Error'
+import Header from './components/Header'
+import Search from './components/Search'
+import hiscores from 'osrs-json-hiscores'
+import Loader from 'react-loader-spinner'
+import Username from './components/Username'
+import Skills from './components/Skills'
 
 class App extends Component {
   state = {
@@ -115,22 +114,22 @@ class App extends Component {
         }
       }
     ]
-  };
+  }
 
-  getUsers = async e => {
-    e.preventDefault();
+  getUsers = e => {
+    e.preventDefault()
     this.setState({
       error: false,
       loading: true,
       showResults: false,
       username: undefined
-    });
-    const USER_NAME = e.target.elements.userName.value;
-    const api_call = await hiscores
-      .getStats(`${USER_NAME}`, "main", {headers: {'Access-Control-Allow-Origin': '*'}})
+    })
+    const USER_NAME = e.target.elements.userName.value
+    hiscores
+      .getStats(`${USER_NAME}`)
       .then(res => {
-        let userName = res.rsn;
-        let data = res.main.stats;
+        let userName = res.rsn
+        let data = res.main.stats
 
         this.setState({
           loading: false,
@@ -236,37 +235,29 @@ class App extends Component {
               }
             }
           ]
-        });
+        })
       })
-      .catch(err => (this.setState({error: true, loading: false})
-      ))
-  };
+      .catch(err => this.setState({ error: true, loading: false }))
+  }
 
   render() {
     return (
       <div className="App">
         <Header />
         <Search getUsers={this.getUsers} />
-        {this.state.loading ? ( <span className="loader">
-          <Loader
-            type="Triangle"
-            color="white"
-            height={50}
-            width={50}
-          />
+        {this.state.loading ? (
+          <span className="loader">
+            <Loader type="Triangle" color="white" height={50} width={50} />
           </span>
-          
         ) : null}
         <Error error={this.state.error} />
         <div className="list-container">
           <Username userName={this.state.username} />
-          {this.state.showResults ? (
-            <Skills totalSkills={this.state.skills} />
-          ) : null}
+          {this.state.showResults ? <Skills totalSkills={this.state.skills} /> : null}
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App

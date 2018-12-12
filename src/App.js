@@ -8,6 +8,7 @@ import Loader from "react-loader-spinner";
 import Username from "./components/Username";
 import Skills from "./components/Skills";
 
+
 class App extends Component {
   state = {
     error: false,
@@ -126,7 +127,7 @@ class App extends Component {
     });
     const USER_NAME = e.target.elements.userName.value;
     const api_call = await hiscores
-      .getStats(`${USER_NAME}`, "main")
+      .getStats(`${USER_NAME}`, "main", {headers: {'Access-Control-Allow-Origin': '*'}})
       .then(res => {
         let userName = res.rsn;
         let data = res.main.stats;

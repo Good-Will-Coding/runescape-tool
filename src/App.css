@@ -17,7 +17,6 @@ body {
   justify-items: center;
   margin: 50px 15px;
   min-width: 200px;
-
   font-size: calc(10px + 2vmin);
   color:#dcdde1;
 }
@@ -60,6 +59,29 @@ input:-webkit-autofill:active {
 
 #form__btn-fontsize {
   font-size: 1vw;
+}
+
+@media (max-width: 300px) {
+  #form__btn-fontsize, .form__input {
+    font-size: 5vw;
+  }
+  .form__btn {
+    margin-top: 5px;
+    width: 60%;
+  }
+}
+
+@media (max-width: 750px) {
+  #form__btn-fontsize {
+    font-size: 3vw;
+  }
+  .form__btn {
+    margin-top: 5px;
+    width: 30%;
+  }
+  .form__input {
+    font-size: 2vw;
+  }
 }
 
 @media (max-width: 1111px) {

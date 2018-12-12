@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "osrs-json-hiscores": "^1.1.1",
+    "osrs-json-hiscores": "git+https://github.com/Good-Will-Coding/osrs-json-hiscores.git",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-loader-spinner": "^2.3.0",

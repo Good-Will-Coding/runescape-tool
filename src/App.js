@@ -14,7 +14,7 @@ class App extends Component {
     loading: false,
     showResults: false,
     username: undefined,
-    skills:[]
+    skills: []
   };
 
   getUsers = e => {
@@ -141,26 +141,29 @@ class App extends Component {
       .catch(err => this.setState({ error: true, loading: false }));
   };
 
-  render() {
-    const { loading, error, username, skills, showResults } = this.state;
+  renderContent() {
+    const { loading, error, username, skills } = this.state;
     return (
-      <div className="App">
+      <div>
         <Header />
         <Search getUsers={this.getUsers} />
         {loading ? (
           <span className="loader">
             <Loader type="Triangle" color="white" height={50} width={50} />
           </span>
-        ) : null}
+        ) : (
+          <div className="list-container">
+            <Username userName={username} />
+            <Skills totalSkills={skills} /> 
+          </div>
+        )}
         <Error error={error} />
-        <div className="list-container">
-          <Username userName={username} />
-          {showResults ? (
-            <Skills totalSkills={skills} />
-          ) : null}
-        </div>
       </div>
     );
+  }
+
+  render() {
+    return <div className="App">{this.renderContent()}</div>;
   }
 }
 

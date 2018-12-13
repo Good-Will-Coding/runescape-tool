@@ -1,6 +1,6 @@
 * {
   margin: 0;
-  font-family: 'Cinzel', serif;
+  font-family: 'Abel', sans-serif;
 }
 
 body {
@@ -12,13 +12,14 @@ body {
 }
 
 .App-header {
-  background-color:inherit;
+  background-color:rgb(51, 45, 45);
   display: grid;
   justify-items: center;
-  margin: 50px 15px;
+  margin: 50px 30%;
   min-width: 200px;
   font-size: calc(10px + 2vmin);
   color:#dcdde1;
+  border-radius: 10px;
 }
 
 .form__input {
@@ -61,13 +62,16 @@ input:-webkit-autofill:active {
   font-size: 1vw;
 }
 
-@media (max-width: 300px) {
+@media (max-width: 450px) {
   #form__btn-fontsize, .form__input {
     font-size: 5vw;
   }
   .form__btn {
     margin-top: 5px;
     width: 60%;
+  }
+  .App-header {
+    margin: auto;
   }
 }
 

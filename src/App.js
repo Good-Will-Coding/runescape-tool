@@ -1,12 +1,12 @@
-import React, { Component } from 'react'
-import './App.css'
-import Error from './components/Error'
-import Header from './components/Header'
-import Search from './components/Search'
-import hiscores from 'osrs-json-hiscores'
-import Loader from 'react-loader-spinner'
-import Username from './components/Username'
-import Skills from './components/Skills'
+import React, { Component } from "react";
+import "./App.css";
+import Error from "./components/Error";
+import Header from "./components/Header";
+import Search from "./components/Search";
+import hiscores from "osrs-json-hiscores";
+import Loader from "react-loader-spinner";
+import Username from "./components/Username";
+import Skills from "./components/Skills";
 
 class App extends Component {
   state = {
@@ -14,122 +14,23 @@ class App extends Component {
     loading: false,
     showResults: false,
     username: undefined,
-    skills: [
-      {
-        agility: {
-          level: undefined,
-          xp: undefined
-        },
-        attack: {
-          level: undefined,
-          xp: undefined
-        },
-        construction: {
-          level: undefined,
-          xp: undefined
-        },
-        cooking: {
-          level: undefined,
-          xp: undefined
-        },
-        crafting: {
-          level: undefined,
-          xp: undefined
-        },
-        defence: {
-          level: undefined,
-          xp: undefined
-        },
-        farming: {
-          level: undefined,
-          xp: undefined
-        },
-        firemaking: {
-          level: undefined,
-          xp: undefined
-        },
-        fishing: {
-          level: undefined,
-          xp: undefined
-        },
-        fletching: {
-          level: undefined,
-          xp: undefined
-        },
-        herblore: {
-          level: undefined,
-          xp: undefined
-        },
-        hitpoints: {
-          level: undefined,
-          xp: undefined
-        },
-        hunter: {
-          level: undefined,
-          xp: undefined
-        },
-        magic: {
-          level: undefined,
-          xp: undefined
-        },
-        mining: {
-          level: undefined,
-          xp: undefined
-        },
-        overall: {
-          level: undefined,
-          xp: undefined
-        },
-        prayer: {
-          level: undefined,
-          xp: undefined
-        },
-        ranged: {
-          level: undefined,
-          xp: undefined
-        },
-        runecraft: {
-          level: undefined,
-          xp: undefined
-        },
-        slayer: {
-          level: undefined,
-          xp: undefined
-        },
-        smithing: {
-          level: undefined,
-          xp: undefined
-        },
-        strength: {
-          level: undefined,
-          xp: undefined
-        },
-        thieving: {
-          level: undefined,
-          xp: undefined
-        },
-        woodcutting: {
-          level: undefined,
-          xp: undefined
-        }
-      }
-    ]
-  }
+    skills:[]
+  };
 
   getUsers = e => {
-    e.preventDefault()
+    e.preventDefault();
     this.setState({
       error: false,
       loading: true,
       showResults: false,
       username: undefined
-    })
-    const USER_NAME = e.target.elements.userName.value
+    });
+    const USER_NAME = e.target.elements.userName.value;
     hiscores
       .getStats(`${USER_NAME}`)
       .then(res => {
-        let userName = res.rsn
-        let data = res.main.stats
+        let userName = res.rsn;
+        let data = res.main.stats;
 
         this.setState({
           loading: false,
@@ -235,29 +136,32 @@ class App extends Component {
               }
             }
           ]
-        })
+        });
       })
-      .catch(err => this.setState({ error: true, loading: false }))
-  }
+      .catch(err => this.setState({ error: true, loading: false }));
+  };
 
   render() {
+    const { loading, error, username, skills, showResults } = this.state;
     return (
       <div className="App">
         <Header />
         <Search getUsers={this.getUsers} />
-        {this.state.loading ? (
+        {loading ? (
           <span className="loader">
             <Loader type="Triangle" color="white" height={50} width={50} />
           </span>
         ) : null}
-        <Error error={this.state.error} />
+        <Error error={error} />
         <div className="list-container">
-          <Username userName={this.state.username} />
-          {this.state.showResults ? <Skills totalSkills={this.state.skills} /> : null}
+          <Username userName={username} />
+          {showResults ? (
+            <Skills totalSkills={skills} />
+          ) : null}
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default App
+export default App;

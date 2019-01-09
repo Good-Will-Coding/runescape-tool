@@ -9,8 +9,8 @@ https://runescapestats.netlify.com/
 
 ## Usage & testing:
 
-- Enter a Runescape username.
-  Example username: `Zezima`
+- Enter an Old School Runescape username.
+  (Example username: `Zezima`)
 - Table with listed skills and stats will display.
 - If no user is found, an error will display.
 

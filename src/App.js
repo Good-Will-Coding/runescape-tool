@@ -13,17 +13,18 @@ class App extends Component {
     error: false,
     loading: false,
     showResults: false,
-    username: undefined,
+    username: "",
     skills: []
   };
 
+  // Retrieve users from OSRS API
   getUsers = e => {
     e.preventDefault();
     this.setState({
       error: false,
       loading: true,
       showResults: false,
-      username: undefined
+      username: ""
     });
     const USER_NAME = e.target.elements.userName.value;
     hiscores
@@ -31,7 +32,7 @@ class App extends Component {
       .then(res => {
         let userName = res.rsn;
         let data = res.main.stats;
-
+        console.log(data);
         this.setState({
           loading: false,
           showResults: true,
@@ -147,11 +148,14 @@ class App extends Component {
       <div>
         <Header />
         <Search getUsers={this.getUsers} />
-        {loading ? (
+        {
+          // Display loader 
+          loading ? (
           <span className="loader">
             <Loader type="Triangle" color="white" height={50} width={50} />
           </span>
         ) : (
+          // or display list of skills 
           <div className="list-container">
             <Username userName={username} />
             <Skills totalSkills={skills} /> 

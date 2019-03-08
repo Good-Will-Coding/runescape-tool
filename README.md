@@ -19,7 +19,7 @@ https://runescapestats.netlify.com/
 
 At a terminal prompt:
 
-`git clone https://github.com/Good-Will-Coding/runescape-tool.git` 
+`git clone https://github.com/Good-Will-Coding/runescape-tracker-tool.git` 
 
 In terminal, navigate to the directory where you cloned this repository and use
 enter command:

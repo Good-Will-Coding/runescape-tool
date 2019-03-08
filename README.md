@@ -1,6 +1,6 @@
-## Runescape tool
+## Runescape Tracker
 
-Runescape tool is a web application that uses React.
+Runescape Tracker is a web application that uses React.
 
 The goal of this project was to create an application for users to search up their game stats and scores.
 
